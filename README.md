@@ -36,12 +36,6 @@ A full-stack Notes Application powered by AI, built with the **MERN stack** — 
 
 ---
 
-## 🖥️ Screenshots
-
-*Coming soon – add UI images or GIFs here*
-
----
-
 ## 📦 Installation
 
 1. **Clone the repo:**

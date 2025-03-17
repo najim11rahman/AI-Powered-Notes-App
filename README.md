@@ -91,6 +91,8 @@ npm start
 
 ## 🖥️ Screenshots
 
+![login](https://github.com/user-attachments/assets/f1a6f17b-9576-42ed-a90c-e65d1a1c03a1)
+
 ![AI-Notes-App](https://github.com/user-attachments/assets/17726c8c-b982-402e-8c2c-897d1efca0d9)
 
 ---

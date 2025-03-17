@@ -89,6 +89,12 @@ npm start
 
 ---
 
+## Screenshots
+
+![AI-Notes-App](https://github.com/user-attachments/assets/17726c8c-b982-402e-8c2c-897d1efca0d9)
+
+---
+
 ## 💡 Future Improvements
 
 - Add rich text formatting to notes  

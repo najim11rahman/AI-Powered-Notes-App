@@ -95,7 +95,3 @@ npm start
 - Support for tags and search  
 - Voice input for chatbot  
 - Deployment on cloud (e.g., Render, Vercel, or Railway)
-
----
-
-Let me know if you'd like a version with emojis removed, markdown flattened for LinkedIn/portfolio sites, or if you're planning on deploying—can help with that too!

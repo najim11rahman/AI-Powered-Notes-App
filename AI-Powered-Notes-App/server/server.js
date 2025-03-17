@@ -8,19 +8,18 @@ dotenv.config();
 const authRoutes = require('./routes/authRoutes');
 const noteRoutes = require('./routes/noteRoutes');
 const aiRoutes = require('./routes/aiRoutes');
+const chatRoutes = require('./routes/chatRoutes'); 
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', noteRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/messages', chatRoutes);  
 
-// Connect to DB and start server
 const PORT = process.env.PORT || 3001;
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {

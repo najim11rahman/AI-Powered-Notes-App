@@ -11,7 +11,7 @@ const highlightSchema = new mongoose.Schema({
     required: true,
   },
   importance: {
-    type: Number, // from 1 to 5, where 5 is most important
+    type: Number,
     default: 3,
   },
   type: {

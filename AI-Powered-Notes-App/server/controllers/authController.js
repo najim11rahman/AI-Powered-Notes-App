@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'secret_key'; // Replace in production
+const JWT_SECRET = process.env.JWT_SECRET || 'secret_key';
 const JWT_EXPIRES_IN = '7d';
 
-// Generate JWT
 const generateToken = (userId) => {
   return jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 };

@@ -10,8 +10,8 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 router.use(authMiddleware);
 
-router.post('/:noteId', addHighlight);              // Add a highlight to a note
-router.delete('/:noteId/:highlightId', deleteHighlight);  // Delete a highlight
-router.get('/:noteId', getHighlightsForNote);        // Get all highlights for a note
+router.post('/:noteId', addHighlight);              
+router.delete('/:noteId/:highlightId', deleteHighlight);  
+router.get('/:noteId', getHighlightsForNote);       
 
 module.exports = router;

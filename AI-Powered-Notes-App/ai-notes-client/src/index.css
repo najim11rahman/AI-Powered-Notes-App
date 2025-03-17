@@ -13,7 +13,9 @@ code {
 }
 
 /* Login.css */
-
+#root{
+  background-color: #fdfdfd;
+}
 .login-container {
   display: flex;
   justify-content: center;
@@ -53,7 +55,7 @@ code {
 }
 
 .form-group input {
-  width: 100%;
+  width: 93%;
   padding: 10px 12px;
   font-size: 14px;
   border: 1px solid #ccc;
@@ -114,9 +116,8 @@ code {
 }
 
 .dashboard-container {
-  max-width: 800px;
+  max-width: 66vw;
   margin: auto;
-  padding: 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -124,7 +125,6 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
 }
 
 .dashboard-header h1 {
@@ -155,7 +155,7 @@ code {
 
 .input-field,
 .textarea-field {
-  width: 100%;
+  width: 97%;
   padding: 10px;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
@@ -251,19 +251,16 @@ code {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   margin-left: 20px;
-  height: fit-content;
 }
 
 .chatbox-header {
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .chatbox-messages {
-  max-height: 400px;
+  max-height: 79vh;
   overflow-y: auto;
   padding: 1rem;
   background-color: #f9f9f9;
@@ -297,6 +294,7 @@ code {
   border-radius: 8px;
   margin-bottom: 10px;
   max-width: 75%;
+  font-size: 11px;
 }
 
 .message p {
@@ -331,4 +329,10 @@ code {
 
 .send-button:hover {
   background-color: #0056b3;
+}
+
+.clear{
+  font-size: 10px;
+  cursor: pointer;
+  margin-left: 76%;
 }

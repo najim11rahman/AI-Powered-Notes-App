@@ -132,7 +132,7 @@ const Dashboard = () => {
 <div style={{ display: 'flex' }}>
   <div className="dashboard-container">
     <div className="dashboard-header">
-      <h1>📝 My Notes</h1>
+      <h2>📝 My Notes</h2>
       <button onClick={handleLogout} className="logout-btn">Logout</button>
     </div>
 

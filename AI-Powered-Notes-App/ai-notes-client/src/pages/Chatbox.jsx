@@ -36,7 +36,7 @@ const Chatbox = () => {
       setIsTyping(true); 
 
       const response = await axios.post('http://localhost:3001/api/messages', { message });
-      const ollamaMessage = { sender: 'Ollama', text: response.data.reply };
+      const ollamaMessage = { sender: 'Bot', text: response.data.reply };
 
       setMessages((prev) => [...prev, ollamaMessage]);
     } catch (error) {
@@ -54,10 +54,19 @@ const Chatbox = () => {
     }
   };
 
+  const clearConversation = async () => {
+    try {
+      await axios.post('http://localhost:3001/api/messages/clear');
+      setMessages([]);
+    } catch (error) {
+      console.error('Error clearing conversation:', error);
+    }
+  };
+  
   return (
     <div className="chatbox-container">
       <div className="chatbox-header">
-        <h2>Chat</h2>
+        <h4 style={{marginTop:'0',marginBottom:'6%'}}>Chat<span className='clear' onClick={(e)=>clearConversation()}>Clear</span></h4>
       </div>
 
       <div className="chatbox-messages" ref={chatboxRef}>

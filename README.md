@@ -6,7 +6,7 @@ A full-stack Notes Application powered by AI, built with the **MERN stack** — 
 
 ## 🚀 Features
 
-- 🔐 **User Authentication** – JWT-based login and registration system with bcrypt-secured password encryption.
+- 🔐 **User Authentication** – JWT-based login, signup and registration system with bcrypt-secured password encryption.
 - 📝 **Notes Management** – Create, read, update, and delete notes with a user-friendly interface.
 - 🧠 **AI Summarization** – Automatic note summaries generated via a local Ollama instance running the Mistral model.
 - 💬 **Chatbot Integration** – Interactive chatbox to converse with the local LLM, with support for:

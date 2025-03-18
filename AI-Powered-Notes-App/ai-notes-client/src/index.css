@@ -116,7 +116,7 @@ code {
 }
 
 .dashboard-container {
-  max-width: 66vw;
+  width: 68%;
   margin: auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -262,7 +262,7 @@ code {
 .chatbox-messages {
   max-height: 79vh;
   overflow-y: auto;
-  padding: 1rem;
+  padding: 0 1rem;
   background-color: #f9f9f9;
 }
 

@@ -8,9 +8,10 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
+    confirmPassword: ''
   });
 
   const handleChange = (e) =>
@@ -19,30 +20,37 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if(formData.password!=formData.confirmPassword){
+        toast.error('Confirm Password should be same as password entered');
+        return
+      }
       await signup(formData);
       toast.success('Signup successful!');
-      navigate('/dashboard');
+      navigate('/login');
     } catch (err) {
       toast.error(err?.response?.data?.message || 'Signup failed');
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="login-container">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-xl shadow-md w-full max-w-md"
+        className="login-form"
       >
-        <h2 className="text-2xl font-semibold mb-4 text-center">Sign Up</h2>
+        <h2 className="login-title">Sign Up</h2>
+        <div className="form-group">
         <input
           type="text"
-          name="name"
+          name="username"
           placeholder="Your name"
-          value={formData.name}
+          value={formData.username}
           onChange={handleChange}
           className="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none"
           required
         />
+        </div>
+        <div className="form-group">
         <input
           type="email"
           name="email"
@@ -52,6 +60,8 @@ const Signup = () => {
           className="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none"
           required
         />
+        </div>
+        <div className="form-group">
         <input
           type="password"
           name="password"
@@ -61,13 +71,25 @@ const Signup = () => {
           className="w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none"
           required
         />
+        </div>
+        <div className="form-group">
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm password"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+          className="w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none"
+          required
+        />
+        </div>
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
+           className="login-button"
         >
           Sign Up
         </button>
-        <p className="mt-4 text-sm text-center">
+        <p className="signup-link">
           Already have an account?{' '}
           <Link to="/login" className="text-indigo-600 font-medium hover:underline">
             Log In

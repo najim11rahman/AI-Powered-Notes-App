@@ -68,6 +68,24 @@ exports.login = async (req, res) => {
   }
 };
 
+exports.signup = async (req, res) => {
+  console.log(req.body)
+  const { username, email, password } = req.body;
+
+  try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+    console.log(existingUser)
+    const newUser = new User({ username, email, password });
+    console.log(newUser)
+    await newUser.save();
+    res.status(201).json({ message: 'User created successfully', user: newUser });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 // @desc   Get current user
 // @route  GET /api/auth/me
 // @access Private

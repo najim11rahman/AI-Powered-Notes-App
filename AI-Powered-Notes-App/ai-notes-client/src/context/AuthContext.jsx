@@ -35,6 +35,16 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('token', data.token);
   };
 
+  const signup = async ({ username, email, password }) => {
+    const res = await axios.post('http://localhost:3001/api/auth/signup', {
+      username,
+      email,
+      password
+    });
+    const data = res.data;
+    setUser(data.user);
+    localStorage.setItem('token', data.token);
+  };
   const logout = () => {
     localStorage.removeItem('token');
     setToken('');
@@ -43,7 +53,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout, signup }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,10 +1,9 @@
-// controllers/chatController.js
 const axios = require('axios');
 const Message = require('../models/Message');
 
 exports.getMessages = async (req, res) => {
   try {
-    const messages = await Message.find().sort({ createdAt: 1 });
+    const messages = await Message.find({ user: req.user.id }).sort({ createdAt: 1 });
     res.json(messages);
   } catch (error) {
     console.error('Error fetching messages:', error);
@@ -20,7 +19,11 @@ exports.sendMessage = async (req, res) => {
   }
 
   try {
-    const userMessage = new Message({ sender: 'You', text: message });
+    const userMessage = new Message({
+      user: req.user.id,
+      sender: 'You',
+      text: message,
+    });
     await userMessage.save();
 
     const response = await axios.post('http://localhost:11434/api/generate', {
@@ -29,11 +32,12 @@ exports.sendMessage = async (req, res) => {
       stream: false,
     });
 
-    const ollamaResponse = new Message({
+    const botMessage = new Message({
+      user: req.user.id,
       sender: 'Bot',
       text: response.data.response.trim(),
     });
-    await ollamaResponse.save();
+    await botMessage.save();
 
     res.json({ reply: response.data.response.trim() });
   } catch (error) {
@@ -44,7 +48,7 @@ exports.sendMessage = async (req, res) => {
 
 exports.clearMessages = async (req, res) => {
   try {
-    await Message.deleteMany({});
+    await Message.deleteMany({ user: req.user.id });
     res.status(200).send('Messages cleared');
   } catch (error) {
     console.error('Error clearing messages:', error);

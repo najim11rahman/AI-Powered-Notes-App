@@ -7,17 +7,21 @@ const Chatbox = () => {
   const [isTyping, setIsTyping] = useState(false);
   const chatboxRef = useRef(null);
 
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/messages');
+        const response = await axios.get('http://localhost:3001/api/messages', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setMessages(response.data);
       } catch (error) {
         console.error('Error fetching messages:', error);
       }
     };
     fetchMessages();
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     if (chatboxRef.current) {
@@ -35,9 +39,13 @@ const Chatbox = () => {
       setMessages((prev) => [...prev, userMessage]);
       setIsTyping(true); 
 
-      const response = await axios.post('http://localhost:3001/api/messages', { message });
-      const ollamaMessage = { sender: 'Bot', text: response.data.reply };
+      const response = await axios.post(
+        'http://localhost:3001/api/messages',
+        { message },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
+      const ollamaMessage = { sender: 'Bot', text: response.data.reply };
       setMessages((prev) => [...prev, ollamaMessage]);
     } catch (error) {
       console.error('Error sending message:', error);
@@ -56,7 +64,11 @@ const Chatbox = () => {
 
   const clearConversation = async () => {
     try {
-      await axios.post('http://localhost:3001/api/messages/clear');
+      await axios.post(
+        'http://localhost:3001/api/messages/clear',
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       setMessages([]);
     } catch (error) {
       console.error('Error clearing conversation:', error);
@@ -66,12 +78,14 @@ const Chatbox = () => {
   return (
     <div className="chatbox-container">
       <div className="chatbox-header">
-        <h4 style={{marginTop:'0',marginBottom:'6%'}}>Chat<span className='clear' onClick={(e)=>clearConversation()}>Clear</span></h4>
+        <h4 style={{marginTop:'0', marginBottom:'6%'}}>
+          Chat<span className='clear' onClick={clearConversation}>Clear</span>
+        </h4>
       </div>
 
       <div className="chatbox-messages" ref={chatboxRef}>
         {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.sender === 'You' ? 'sent' : 'received'}`}>
+          <div key={index} className={`message ${msg.sender === 'You' || msg.sender === 'user' ? 'sent' : 'received'}`}>
             <p><strong>{msg.sender}:</strong> {msg.text}</p>
           </div>
         ))}
